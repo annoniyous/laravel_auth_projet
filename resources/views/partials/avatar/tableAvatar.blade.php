@@ -1,12 +1,12 @@
 <div class="container">
     <h1 class="my-5">Avatars</h1>
-<table class="table border">
+<table class="text-light bg bg-dark table table-striped mb-5">
     <thead>
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Image</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
+        <th scope="col">Delete</th>
+        <th scope="col">Edit</th>
       </tr>
     </thead>
     <tbody>
