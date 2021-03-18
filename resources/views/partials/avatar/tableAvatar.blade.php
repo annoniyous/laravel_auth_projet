@@ -13,7 +13,7 @@
       @foreach ($avatars as $item)
         <tr>
             <td>{{$item->name}}</td>
-            <td><img height="100px" src="{{asset('img/'.$item->src)}}" alt=""></td>
+            <td><img height="100px" src="{{asset('storage/img/'.$item->src)}}" alt=""></td>
             <td>
                 <form action="/avatars/{{$item->id}}" method="POST">
                     @csrf
