@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Avatar;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AvatarController extends Controller
 {
@@ -36,7 +38,17 @@ class AvatarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'src' => 'required'
+        ]);
+
+        $newEntry = new Avatar;
+        $newEntry->src = $request->file('src')->hashName();
+        $request->file('src')->storePublicly('img/', 'public');
+        $newEntry->name = $request->name;
+        $newEntry->save();
+        return redirect('avatars');
     }
 
     /**
@@ -58,7 +70,8 @@ class AvatarController extends Controller
      */
     public function edit(Avatar $avatar)
     {
-        //
+        $edit = $avatar;
+        return view('pages.avatar.edit', compact('edit'));
     }
 
     /**
@@ -70,7 +83,18 @@ class AvatarController extends Controller
      */
     public function update(Request $request, Avatar $avatar)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'src' => 'required'
+        ]);
+
+        $updateEntry = $avatar;
+        Storage::disk('public')->delete('img/'.$avatar->src);
+        $updateEntry->src = $request->file('src')->hashName();
+        $request->file('src')->storePublicly('img/', 'public');
+        $updateEntry->name = $request->name;
+        $updateEntry->save();
+        return redirect('avatars');
     }
 
     /**
@@ -81,6 +105,12 @@ class AvatarController extends Controller
      */
     public function destroy(Avatar $avatar)
     {
-        //
+        Storage::disk('public')->delete('img/'.$avatar->src);
+        $users = User::all();
+        foreach ($users->where('avatar_id',$avatar->id) as $item) {
+            $item->avatar_id = 1;
+        }
+        $avatar->delete();
+        return redirect('avatars');
     }
 }

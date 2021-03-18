@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Image;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class ImageController extends Controller
      */
     public function index()
     {
-        //
+        $images = Image::all();
+        $categories = Category::all();
+        return view('pages.image.image',compact('images','categories'));
     }
 
     /**
