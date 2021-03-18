@@ -14,7 +14,7 @@ class UserController extends Controller
         // $userLog = Auth::user();
         // $avatars = Avatar::where('id', '>', 1)->get();
         // $default = Avatar::first();
-        return view('pages.user.user', compact('users','', '', ''));
+        return view('pages.user.user', compact('users'));
     }
 
     /**
@@ -24,7 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.user.create');
     }
 
     /**
@@ -35,7 +35,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $store = new User;
+        $store->name = $request->name;
+        $store->firstname = $request->firstname;
+        $store->email = $request->email;
+        $store->age = $request->age;
+        $store->password = $request->password;
+        $store->avatar_id = $request->avatar_id;
+        $store->save();
+        return redirect()->back();
     }
 
     /**
@@ -58,7 +66,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-
+        $edit = User::find($id);
+        return view('pages/edit', compact('edit'));
     }
 
     /**
@@ -75,7 +84,8 @@ class UserController extends Controller
             "firstname"=>"required",
             "age"=>"required",
             "email"=>"required",
-            "avatar_id"=>"required"
+            "avatar_id"=>"required",
+            "password"=>"required"
         ]);
 
         $updateEntry = User::find($id);
@@ -83,6 +93,8 @@ class UserController extends Controller
         $updateEntry->firstname = $request->firstname;
         $updateEntry->age = $request->age;
         $updateEntry->email = $request->email;
+        $updateEntry->password = $request->password;
+
         $updateEntry->avatar_id = $request->avatar_id;
         $updateEntry->save();
         return redirect("users");

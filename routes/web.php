@@ -26,7 +26,7 @@ Route::resource('users', UserController::class);
 Route::resource('categories', CategoryController::class);
 Route::resource('images', ImageController::class);
 
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
