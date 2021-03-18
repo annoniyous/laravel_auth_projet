@@ -24,7 +24,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('pages.user.create');
+        $avatars=Avatar::all();
+        return view('pages.user.create', compact('avatars'));
     }
 
     /**
@@ -67,7 +68,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $edit = User::find($id);
-        return view('pages/edit', compact('edit'));
+        $avatars = Avatar::all();
+        return view('pages.user.edit', compact('edit','avatars'));
     }
 
     /**

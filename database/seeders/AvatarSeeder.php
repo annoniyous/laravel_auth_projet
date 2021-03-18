@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class AvatarSeeder extends Seeder
 {
@@ -13,6 +14,13 @@ class AvatarSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('avatars')->insert(
+            [
+                [
+                   "name" => 'Annoniyous' ,
+                   "src" => 'default.jpeg'
+                ],
+            ]
+        );
     }
 }

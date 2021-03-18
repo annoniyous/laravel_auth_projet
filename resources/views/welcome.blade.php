@@ -3,15 +3,18 @@
 <div class="container">
     <h1 class="text-center">Bienvenue dans la page Welcome</h1>
 
-        {{-- @auth
+        @auth
         <div class="card">
             <div class="card-header">
-            {{$user->name}} {{$user->firstname}}
+            {{Auth::user()->name}}, {{Auth::user()->firstname}}
             </div>
             <div class="card-body">
             <blockquote class="blockquote mb-0">
-                <img height="200px" src="{{asset("storage/img/".$user->avatars->src)}}" alt="">
-                
+                @if (Auth::user()->avatar_id <= 1 )
+                <img height="200px" src="{{asset("storage/img/".$avatars[0]->src)}}" alt="">
+                @else
+                <img height="200px" src="{{asset("storage/img/".Auth::user()->avatars->src)}}" alt="">
+                @endif
             </blockquote>
             </div>
         </div>
@@ -34,7 +37,7 @@
                 @endforeach
             </div>
         </div>
-    @endforeach --}}
+    @endforeach
 </div>
     
 @endsection

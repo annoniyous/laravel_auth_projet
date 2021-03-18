@@ -88,25 +88,27 @@
                         </div>
 
 
-                        {{-- <div class="form-group row mt-5 mb-5">
-                            <label for="avatar" class="col-md-4 col-form-label text-md-right">{{__('Avatar') }}</label>
+                        <div class="form-group container row mx-5"> 
 
-                           <div class="col-md-6">
-                            <div class="row">
-                                @foreach ($avatars as $item)
-                                    <div class="col-4 d-flex">
-                                        <input type="radio" name="avatar_id" value="{{$item->id}}" style="margin-top: 45px;">
-
-                                        <img src="{{asset('storage/img'.$item->src)}}" alt="" width="100" height="100">
+                            @foreach ($avatars as $avatar)
+                                <div class="input-group my-2 col-6">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <input type="radio" aria-label="Radio button for following text input" id="{{$avatar->id}}" value="{{$avatar->id}}" name="avatar_id">
+                                        </div>
+                                        @if ($avatar->id ==1)
+                                            <img src="{{asset('storage/img/'.$avatars[0]->src)}}" alt="" height="100px">
+                                        @else
+                                            <img src="{{asset('storage/img/'.$avatar->src)}}" alt="" height="100px">
+                                        @endif
+                                        
                                     </div>
-                                @if ($loop->iteration % 3 == 0)
-                                    
-                                @endif
-                                @endforeach
-                           </div>
-                           </div>
-                        </dir> --}}
-                        
+                                </div>
+                            @endforeach  
+
+                        </div>
+
+                         
                        
 
                         <div class="form-group row mb-0">

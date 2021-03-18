@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->unsignedBigInteger("avatar_id")->nullable();
-            $table->foreign("avatar_id")->references("id")->on("avatars");
+            $table->foreign("avatar_id")->references("id")->on("avatars")->onDelete('set null');
             $table->timestamps();
         });
     }

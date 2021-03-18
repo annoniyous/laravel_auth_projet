@@ -4,6 +4,10 @@ use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UserController;
+use App\Models\Avatar;
+use App\Models\Category;
+use App\Models\Image;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +22,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $categories = Category::all();
+    $images = Image::all();
+    $avatars = Avatar::all();
+    $users= User::all();
+    return view('welcome', compact('categories','images','avatars','users'));
 });
 
 Route::resource('avatars', AvatarController::class);
