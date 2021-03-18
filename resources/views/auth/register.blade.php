@@ -86,6 +86,27 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+
+
+                        {{-- <div class="form-group row mt-5 mb-5">
+                            <label for="avatar" class="col-md-4 col-form-label text-md-right">{{__('Avatar') }}</label>
+
+                           <div class="col-md-6">
+                            <div class="row">
+                                @foreach ($avatars as $item)
+                                    <div class="col-4 d-flex">
+                                        <input type="radio" name="avatar_id" value="{{$item->id}}" style="margin-top: 45px;">
+
+                                        <img src="{{asset('storage/img'.$item->src)}}" alt="" width="100" height="100">
+                                    </div>
+                                @if ($loop->iteration % 3 == 0)
+                                    
+                                @endif
+                                @endforeach
+                           </div>
+                           </div>
+                        </dir> --}}
+                        
                        
 
                         <div class="form-group row mb-0">
